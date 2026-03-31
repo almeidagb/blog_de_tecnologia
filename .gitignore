@@ -1,0 +1,62 @@
+# Arquivos de sistema
+*.DS_Store
+Thumbs.db
+
+# Arquivos Python compilados
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Ambiente virtual
+venv/
+env/
+.venv/
+.env/
+
+# Arquivos de configuração sensíveis
+*.env
+.env.*
+
+# Banco de dados local
+db.sqlite3
+db.sqlite3-journal
+
+# Arquivos de migração compilados
+*/migrations/__pycache__/
+*/migrations/*.pyc
+
+# Arquivos de cache do Django
+*.log
+*.pot
+*.pyc
+*.pyo
+*.mo
+*.pot
+*.log
+*.tmp
+
+# Arquivos estáticos e de mídia gerados
+/staticfiles/
+/media/
+
+# Cache do Django
+django_cache/
+
+# Arquivos de IDEs
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Arquivos de testes
+.coverage
+htmlcov/
+.tox/
+.pytest_cache/
+
+# Docker
+docker-compose.override.yml
+*.pid
+
+# Configurações específicas de deploy
+local_settings.py
