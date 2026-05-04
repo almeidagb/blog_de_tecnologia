@@ -7,8 +7,8 @@ def detalhar_post(request, id):
         post = Post.objects.get(id=id)
     except Post.DoesNotExist:
         return JsonResponse({'erro': 'Post não encontrado'}, status=404)
-
-    # GET → ver post + comentários
+    
+    #GET → ver post + comentários
     if request.method == 'GET':
         comentarios = list(post.comentarios.values())
 
@@ -18,17 +18,18 @@ def detalhar_post(request, id):
             'conteudo': post.conteudo,
             'comentarios': comentarios
         })
-
-    # POST → criar comentário
-    elif request.method == 'POST':
+    
+def criar_comentario(request, id):
+    #POST → criar comentário
+   if request.method == 'POST':
         try:
-            dados = json.loads(request.body)
+            dados = json.loads(request.id)
         except json.JSONDecodeError:
             return JsonResponse({'erro': 'JSON inválido'}, status=400)
 
         if not dados.get('autor') or not dados.get('texto'):
             return JsonResponse({'erro': 'autor e texto são obrigatórios'}, status=400)
-
+        post = Post.objects.get(id=id)
         Comentario.objects.create(
             post=post,
             autor=dados.get('autor'),
@@ -36,9 +37,7 @@ def detalhar_post(request, id):
         )
 
         return JsonResponse({'mensagem': 'Comentário criado com sucesso'}, status=201)
-
-    # Método não permitido
-    return JsonResponse({'erro': 'Método não permitido'}, status=405)
+    
 
 def filtrar_posts(request):
     """
