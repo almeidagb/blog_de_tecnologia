@@ -22,3 +22,25 @@ class Comentario(models.Model):
         return f'comentário de {self.autor}'
     
     
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+
+    
+
+
+
+
+

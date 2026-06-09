@@ -1,53 +1,76 @@
 # Blog de Tecnologia
 
-> [!NOTE]
-> ### Qual é o tema do seu sistema?
-O tema do sistema é um blog de tecnologia, onde usuários podem:
+Sistema de blog com Django REST Framework e PostgreSQL.
 
-- Visualizar posts sobre tecnologia  
-- Ler comentários relacionados aos posts  
-- Criar comentários nos posts  
+## 🚀 Quick Start
 
-Ou seja, é um sistema de publicação de conteúdo e interação via comentários.
+### Pré-requisitos
+- Docker e Docker Compose instalados
+
+### Executar com Docker Compose
+
+```bash
+docker compose up -d
+```
+
+Acesse em: **http://localhost:8000**
+
+### Usar a imagem do Docker Hub
+
+```bash
+docker pull gabitcha/blog-de-tecnologia:latest
+docker run -d -p 8000:8000 gabitcha/blog-de-tecnologia:latest
+```
+
+## ⚙️ Configuração
+
+Crie um arquivo `.env` na raiz:
+
+```
+DB_NAME=blogtech
+DB_USER=blog_user
+DB_PASSWORD=blog_password
+DEBUG=True
+SECRET_KEY=chave-segura
+```
+
+## 📚 Endpoints
+
+- **Listar posts**: `GET /api/posts/`
+- **Detalhar post**: `GET /api/posts/<id>/`
+- **Criar comentário**: `POST /api/posts/<id>/`
+- **Filtrar posts**: `GET /api/posts/filtrar/?q=palavra`
+- **Admin Django**: `GET /admin/`
+
+## 🛑 Parar os containers
+
+```bash
+docker compose down
+```
+
+## 📦 Tecnologias
+
+- Django 5.2 + Django REST Framework
+- PostgreSQL 16
+- Python 3.12
+- Docker
 
 ---
 
-> [!IMPORTANT]
-> ### Quais são as funcionalidades esperadas?
+> [!NOTE]
+> ### Funcionalidades do sistema
 
-Com base no seu código e rotas:
-
-- **Listar e detalhar posts** – cada post mostra título, conteúdo e comentários associados  
-  - Rota: `/api/posts/<id>/` (GET)
-
-- **Criar comentários** – usuários podem enviar comentários em posts existentes  
-  - Rota: `/api/posts/<id>/` (POST)
-
-- **Filtrar posts por título** – permite buscar posts por palavra-chave  
-  - Rota: `/api/posts/filtrar/?q=palavra` (GET)
-
-- **Administração via Django Admin** – adicionar, editar ou deletar posts e comentários  
-  - Rota: `/admin/`
-
-💡 Funcionalidades extras que você pode adicionar depois:
-- Autenticação de usuários para comentar  
-- Curtidas ou reações nos posts  
-- Categorias ou tags de posts  
+O sistema permite:
+- Visualizar posts sobre tecnologia
+- Ler comentários nos posts
+- Criar comentários nos posts
+- Administração via Django Admin
 
 ---
 
 > [!TIP]
-> ### Quais serão os dados armazenados?
+> ### Dados armazenados
 
-Baseado no `models.py` do seu projeto:
+**Post**: título, conteúdo, data de criação
 
-#### 📌 Post
-- `titulo` (CharField) → título do post  
-- `conteudo` (TextField) → conteúdo do post  
-- `data_criacao` (DateTimeField) → data/hora de criação  
-
-#### 💬 Comentario
-- `post` (ForeignKey para Post) → post relacionado  
-- `autor` (CharField) → nome de quem comentou  
-- `texto` (TextField) → conteúdo do comentário  
-- `data` (DateTimeField) → data/hora do comentário  
+**Comentário**: post relacionado, autor, texto, data
